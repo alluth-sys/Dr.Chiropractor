@@ -57,10 +57,6 @@ const styles = StyleSheet.create({
   },
 });
 
-// WelcomeScreen.navigationOptions = () => {
-//   return {
-//     //headerShown: false,
-//   };
-// };
+WelcomeScreen.navigationOptions = () => {};
 
 export default WelcomeScreen;
