@@ -17,37 +17,40 @@ const SignUpScreen = ({ navigation }) => {
   const [password, setPassword] = useState("");
 
   return (
-    <KeyboardAvoidingView style={styles.container}>
-      <View>
-        <Text style={styles.textStyle}>
-          Your phone have been confirmed{"\n"}Let us know more about you
-        </Text>
-        <Spacer />
+    <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
+      <KeyboardAvoidingView style={styles.container}>
         <View>
-          <Text style={styles.label}>Email:</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={setEmail}
-            value={email}
-            autoCorrect={false}
-          />
-        </View>
-        <Spacer />
-        <View>
-          <Text style={styles.label}>Password:</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={setPassword}
-            value={password}
-            autoCorrect={false}
-            secureTextEntry={true}
-          />
-        </View>
+          <Text style={styles.textStyle}>
+            Your phone have been confirmed{"\n"}Let us know more about you
+          </Text>
+          <Spacer />
+          <View>
+            <Text style={styles.label}>Email:</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={setEmail}
+              value={email}
+              autoCorrect={false}
+            />
+          </View>
+          <Spacer />
+          <View>
+            <Text style={styles.label}>Password:</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={setPassword}
+              value={password}
+              autoCorrect={false}
+              secureTextEntry={true}
+            />
+          </View>
 
-        <Spacer />
-        <Button title="Sign Up" />
-      </View>
-    </KeyboardAvoidingView>
+          <Spacer />
+          <Button title="Sign Up" />
+        </View>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
+
   );
 };
 
@@ -57,6 +60,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
+    marginBottom: 300,
   },
   textStyle: {
     fontFamily: "opensans_bold",
