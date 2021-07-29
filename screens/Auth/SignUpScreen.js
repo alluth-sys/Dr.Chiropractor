@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
+    marginBottom: 300,
   },
   inner: {
     marginBottom: "45%",
