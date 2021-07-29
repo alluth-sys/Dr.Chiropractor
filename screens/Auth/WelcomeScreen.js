@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import SafeAreaView from "react-native-safe-area-view";
 import { RFValue } from "react-native-responsive-fontsize";
+import { Button } from "react-native-elements";
 
 const WelcomeScreen = (props) => {
   return (
@@ -12,14 +13,12 @@ const WelcomeScreen = (props) => {
         <Text style={styles.text}>Chiropractor</Text>
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.buttonStyle}
-          onPress={() => {
-            props.navigation.navigate("Signup");
-          }}
-        >
-          <Text style={styles.buttonText}>Sign up / Log in</Text>
-        </TouchableOpacity>
+        <Button
+          title="Get Started"
+          buttonStyle={styles.buttonStyle}
+          titleStyle={{ fontFamily: "opensans_bold" }}
+          onPress={() => props.navigation.navigate("OTP")}
+        />
       </View>
     </SafeAreaView>
   );
@@ -51,12 +50,18 @@ const styles = StyleSheet.create({
   buttonStyle: {
     backgroundColor: "#007AFE",
     borderRadius: 50,
-    marginBottom: 40,
-    paddingVertical: "4%",
-    paddingHorizontal: "28%",
+    marginBottom: 100,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
   },
 });
 
-WelcomeScreen.navigationOptions = () => {};
+WelcomeScreen.navigationOptions = () => {
+  return {
+    headerTitleStyle: {
+      fontFamily: "opensans_bold",
+    },
+  };
+};
 
 export default WelcomeScreen;

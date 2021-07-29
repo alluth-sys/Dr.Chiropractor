@@ -4,50 +4,100 @@ import {
   View,
   Text,
   KeyboardAvoidingView,
-  TextInput,
+  TouchableWithoutFeedback,
+  Keyboard,
+  Platform,
 } from "react-native";
 import { Button } from "react-native-elements";
-import { StatusBar } from "expo-status-bar";
-import SafeAreaView from "react-native-safe-area-view";
 import Spacer from "../../components/Spacer";
+import DefaultInput from "../../components/DefaultInput";
+import firebase from "firebase";
 
 const SignUpScreen = ({ navigation }) => {
   //console.log(navigation);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  return (
-    <KeyboardAvoidingView style={styles.container}>
-      <View>
-        <Text style={styles.textStyle}>
-          Your phone have been confirmed{"\n"}Let us know more about you
-        </Text>
-        <Spacer />
-        <View>
-          <Text style={styles.label}>Email:</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={setEmail}
-            value={email}
-            autoCorrect={false}
-          />
-        </View>
-        <Spacer />
-        <View>
-          <Text style={styles.label}>Password:</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={setPassword}
-            value={password}
-            autoCorrect={false}
-            secureTextEntry={true}
-          />
-        </View>
+  const onSignUp = () => {
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
-        <Spacer />
-        <Button title="Sign Up" />
-      </View>
-    </KeyboardAvoidingView>
+  //For validating User Input
+  const emailInputHandler = (inputText) => {
+    if (inputText === "") {
+      //Input Check
+      setEmail("");
+    } else {
+      setEmail(inputText);
+    }
+  };
+  const passwordInputHandler = (inputText) => {
+    if (inputText === "") {
+      //Input Check
+      setPassword("");
+    } else {
+      setPassword(inputText);
+    }
+  };
+
+  return (
+    <TouchableWithoutFeedback
+      onPress={() => {
+        Keyboard.dismiss();
+      }}
+    >
+      <KeyboardAvoidingView style={styles.container} behavior="height">
+        <View style={styles.inner}>
+          <Text style={{ fontFamily: "opensans_bold" }}>
+            Your phone have been confirmed{"\n"}Let us know more about you!
+          </Text>
+          <Spacer />
+          <DefaultInput
+            label="Email"
+            autoCapitalize="none"
+            autoCorrect={false}
+            onChangeText={emailInputHandler}
+            value={email}
+            //autoCompleteType="email"
+          />
+          <Spacer />
+          <View>
+            <DefaultInput
+              label="Password"
+              onChangeText={setPassword}
+              value={password}
+              autoCorrect={false}
+              secureTextEntry={true}
+              onChangeText={passwordInputHandler}
+              value={password}
+            />
+          </View>
+
+          <Spacer />
+          <Button
+            title="Sign Up"
+            onPress={onSignUp}
+            titleStyle={{ fontFamily: "opensans_bold" }}
+            buttonStyle={{ backgroundColor: "#007AFE", borderRadius: 50 }}
+          />
+          <Spacer />
+          <Text
+            onPress={() => navigation.navigate("Signin")}
+            style={{ fontFamily: "opensans_regular" }}
+          >
+            Already have an account? Sign in here
+          </Text>
+        </View>
+      </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -58,28 +108,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  textStyle: {
-    fontFamily: "opensans_bold",
-  },
-  input: {
-    height: 50,
-    width: 300,
-    padding: 5,
-    borderWidth: 2,
-    borderRadius: 10,
-    backgroundColor: "#F5F5F5",
-  },
-  label: {
-    marginBottom: 10,
-    fontSize: 15,
-    fontFamily: "opensans_bold",
+  inner: {
+    marginBottom: "45%",
+    paddingBottom: 10,
   },
 });
 
 SignUpScreen.navigationOptions = () => {
   return {
     title: "Sign Up",
-    headerLeft: () => null,
+    headerTitleStyle: {
+      fontFamily: "opensans_bold",
+    },
   };
 };
 
