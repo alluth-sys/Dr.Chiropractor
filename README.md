@@ -8,4 +8,4 @@
 ## To Start Project:
 1. npm install
 2. expo upgrade
-3. npm start
+3. npm start -c
