@@ -1,6 +1,6 @@
 ## This App uses:
 - React Native (Javascript) 
-- expo
+- expo cli
 - React Navigation Version 5
 - Firebase (Authentication)
 - Redux
