@@ -1,4 +1,3 @@
-# Massage App
 ## This App uses:
 - React Native (Javascript) 
 - expo
