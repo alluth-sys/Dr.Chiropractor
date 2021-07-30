@@ -84,7 +84,10 @@ const SignUpScreen = ({ navigation }) => {
           <Spacer />
           <Button
             title="Sign Up"
-            onPress={onSignUp}
+            onPress={() => {
+              navigation.navigate("Home");
+              //onSignUp();
+            }}
             titleStyle={{ fontFamily: "opensans_bold" }}
             buttonStyle={{ backgroundColor: "#007AFE", borderRadius: 50 }}
           />
@@ -107,7 +110,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 300,
   },
   inner: {
     marginBottom: "45%",
@@ -115,12 +117,10 @@ const styles = StyleSheet.create({
   },
 });
 
-SignUpScreen.navigationOptions = () => {
+export const screenOptions = () => {
   return {
-    title: "Sign Up",
-    headerTitleStyle: {
-      fontFamily: "opensans_bold",
-    },
+    headerTitle: "Sign Up",
+    headerLeft: () => null,
   };
 };
 

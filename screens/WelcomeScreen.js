@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import SafeAreaView from "react-native-safe-area-view";
 import { RFValue } from "react-native-responsive-fontsize";
@@ -56,11 +56,9 @@ const styles = StyleSheet.create({
   },
 });
 
-WelcomeScreen.navigationOptions = () => {
+export const screenOptions = () => {
   return {
-    headerTitleStyle: {
-      fontFamily: "opensans_bold",
-    },
+    headerShown: false,
   };
 };
 

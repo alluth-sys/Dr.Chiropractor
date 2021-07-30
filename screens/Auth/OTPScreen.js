@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "white",
   },
   inputContainer: {
     flexDirection: "row",
@@ -89,5 +90,11 @@ const styles = StyleSheet.create({
     width: 100,
   },
 });
+
+export const screenOptions = () => {
+  return {
+    headerShown: false,
+  };
+};
 
 export default OTPScreen;

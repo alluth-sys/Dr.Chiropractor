@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { ActivityIndicator, Text } from "react-native";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import AppNavigator from "./navigation/AppNavigator";
+
 import firebase from "firebase";
-import { View } from "react-native";
 
 //firebase configuration
 const firebaseConfig = {
@@ -49,7 +48,7 @@ export default function App() {
     });
   }, []);
 
-  if (!fontsLoaded && !userIsLoaded) {
+  if (!fontsLoaded) {
     return (
       <>
         <AppLoading
@@ -59,26 +58,13 @@ export default function App() {
           }}
           onError={console.warn}
         />
-        <View
-          style={{ justifyContent: "center", alignItems: "center", flex: 1 }}
-        >
-          <ActivityIndicator />
-        </View>
       </>
     );
-  }
-
-  if (!userIsLoggedIn) {
+  } else {
     return (
       <SafeAreaProvider>
         <AppNavigator />
       </SafeAreaProvider>
     );
   }
-
-  return (
-    <View style={{ flex: 1 }}>
-      <Text>User is logged in</Text>
-    </View>
-  );
 }
