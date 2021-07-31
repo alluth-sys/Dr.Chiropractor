@@ -89,7 +89,11 @@ const SignUpScreen = ({ navigation }) => {
               //onSignIn();
             }}
             titleStyle={{ fontFamily: "opensans_bold" }}
-            buttonStyle={{ backgroundColor: "#007AFE", borderRadius: 50 }}
+            buttonStyle={{
+              backgroundColor: "#007AFE",
+              borderRadius: 50,
+              width: 100,
+            }}
           />
           <Spacer />
           <Text
@@ -108,12 +112,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
-    alignItems: "center",
-    justifyContent: "center",
   },
   inner: {
-    marginBottom: "45%",
-    paddingBottom: 10,
+    flex: 1,
+    paddingBottom: 100,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 

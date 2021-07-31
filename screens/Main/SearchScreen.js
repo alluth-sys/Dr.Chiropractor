@@ -5,7 +5,7 @@ import SafeAreaView from "react-native-safe-area-view";
 
 const SearchScreen = (props) => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <View>
         <Text>SearchScreen</Text>
       </View>
@@ -13,6 +13,12 @@ const SearchScreen = (props) => {
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
 
 export default SearchScreen;

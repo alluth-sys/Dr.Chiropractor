@@ -5,7 +5,7 @@ import SafeAreaView from "react-native-safe-area-view";
 
 const Account = (props) => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <View>
         <Text>Account</Text>
       </View>
@@ -13,6 +13,12 @@ const Account = (props) => {
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
 
 export default Account;

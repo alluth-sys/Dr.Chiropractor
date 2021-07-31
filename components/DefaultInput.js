@@ -13,8 +13,8 @@ const DefaultInput = (props) => {
 
 const styles = StyleSheet.create({
   input: {
-    height: 50,
-    width: 300,
+    height: 40,
+    width: 250,
     padding: 5,
     borderWidth: 2,
     borderRadius: 10,

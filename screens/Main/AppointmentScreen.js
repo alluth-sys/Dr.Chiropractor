@@ -5,7 +5,7 @@ import SafeAreaView from "react-native-safe-area-view";
 
 const AppointmentScreen = (props) => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <View>
         <Text>AppointmentScreen</Text>
       </View>
@@ -13,6 +13,12 @@ const AppointmentScreen = (props) => {
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
 
 export default AppointmentScreen;

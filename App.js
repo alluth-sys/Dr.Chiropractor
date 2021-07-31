@@ -3,7 +3,12 @@ import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import AppNavigator from "./navigation/AppNavigator";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import rootReducer from "./redux/reducers";
+import thunk from "redux-thunk";
 
+const store = createStore(rootReducer, applyMiddleware(thunk));
 import firebase from "firebase";
 
 //firebase configuration
@@ -63,7 +68,9 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
-        <AppNavigator />
+        <Provider store={store}>
+          <AppNavigator />
+        </Provider>
       </SafeAreaProvider>
     );
   }

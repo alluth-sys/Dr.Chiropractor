@@ -17,12 +17,21 @@ const SignUpScreen = ({ navigation }) => {
   //console.log(navigation);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
 
   const onSignUp = () => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
+        firebase
+          .firestore()
+          .collection("users")
+          .doc(firebase.auth().currentUser.uid)
+          .set({
+            username,
+            email,
+          });
         console.log(result);
       })
       .catch((error) => {
@@ -47,6 +56,14 @@ const SignUpScreen = ({ navigation }) => {
       setPassword(inputText);
     }
   };
+  const userNameInputHandler = (inputText) => {
+    if (inputText === "") {
+      //Input Check
+      setUsername("");
+    } else {
+      setUsername(inputText);
+    }
+  };
 
   return (
     <TouchableWithoutFeedback
@@ -59,6 +76,15 @@ const SignUpScreen = ({ navigation }) => {
           <Text style={{ fontFamily: "opensans_bold" }}>
             Your phone have been confirmed{"\n"}Let us know more about you!
           </Text>
+          <Spacer />
+          <DefaultInput
+            label="Username "
+            autoCapitalize="none"
+            autoCorrect={false}
+            onChangeText={userNameInputHandler}
+            value={username}
+            //autoCompleteType="email"
+          />
           <Spacer />
           <DefaultInput
             label="Email"
@@ -89,7 +115,11 @@ const SignUpScreen = ({ navigation }) => {
               //onSignUp();
             }}
             titleStyle={{ fontFamily: "opensans_bold" }}
-            buttonStyle={{ backgroundColor: "#007AFE", borderRadius: 50 }}
+            buttonStyle={{
+              backgroundColor: "#007AFE",
+              borderRadius: 50,
+              width: 100,
+            }}
           />
           <Spacer />
           <Text
@@ -112,8 +142,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   inner: {
-    marginBottom: "45%",
-    paddingBottom: 10,
+    flex: 1,
+    paddingBottom: 100,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 
