@@ -12,21 +12,13 @@ import {
 import SafeAreaView from "react-native-safe-area-view";
 import { Button } from "react-native-elements";
 import Spacer from "../../components/Spacer";
+import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
+import firebase from "firebase";
 
 const OTPReceivedScreen = ({ navigation }) => {
-  const [phoneNumber, setPhoneNumber] = useState("");
-
-  const onChangePhoneNumberHandler = (inputText) => {
-    if (inputText === "") {
-      //Check the Phone Number is empty or not
-      setPhoneNumber("");
-    } else {
-      setPhoneNumber(inputText);
-      const PhoneNumber = parseInt(inputText);
-      //check the validity of the Phone Number
-      //if Valid send data to backend
-    }
-  };
+  const [code, setCode] = useState("");
+  const recaptchaVerifier = useRef(null);
+  const confirmCode = () => {};
 
   return (
     <TouchableWithoutFeedback
@@ -39,6 +31,10 @@ const OTPReceivedScreen = ({ navigation }) => {
         behavior={Platform.OS === "android" ? "padding" : "height"}
       >
         <SafeAreaView>
+          <FirebaseRecaptchaVerifierModal
+            ref={recaptchaVerifier}
+            firebaseConfig={firebase.app().options}
+          />
           <View>
             <Text style={{ fontFamily: "opensans_bold" }}>
               Input the verfication code sent to you
@@ -47,10 +43,10 @@ const OTPReceivedScreen = ({ navigation }) => {
 
             <TextInput
               style={styles.inputStyle}
-              keyboardType="phone-pad"
+              keyboardType="number-pad"
               maxLength={6}
-              value={phoneNumber}
-              onChangeText={setPhoneNumber}
+              value={code}
+              onChangeText={setCode}
             />
 
             <Spacer />
@@ -63,7 +59,10 @@ const OTPReceivedScreen = ({ navigation }) => {
                 width: 200,
                 alignSelf: "center",
               }}
-              onPress={() => navigation.navigate("Signup")}
+              onPress={() => {
+                confirmCode();
+                navigation.navigate("Signup");
+              }}
             />
           </View>
         </SafeAreaView>

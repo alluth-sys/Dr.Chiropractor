@@ -78,6 +78,7 @@ const SignUpScreen = ({ navigation }) => {
           </Text>
           <Spacer />
           <DefaultInput
+            //iconName="account-box"
             label="Username "
             autoCapitalize="none"
             autoCorrect={false}
@@ -87,6 +88,7 @@ const SignUpScreen = ({ navigation }) => {
           />
           <Spacer />
           <DefaultInput
+            //iconName="email"
             label="Email"
             autoCapitalize="none"
             autoCorrect={false}
@@ -97,6 +99,7 @@ const SignUpScreen = ({ navigation }) => {
           <Spacer />
           <View>
             <DefaultInput
+              iconName="lock"
               label="Password"
               onChangeText={setPassword}
               value={password}

@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
+
 import { Button } from "react-native-elements";
 import Spacer from "../../components/Spacer";
 import DefaultInput from "../../components/DefaultInput";
@@ -62,16 +63,22 @@ const SignUpScreen = ({ navigation }) => {
             Enter your email and password to Sign In!
           </Text>
           <Spacer />
-          <DefaultInput
-            label="Email"
-            autoCapitalize="none"
-            autoCorrect={false}
-            onChangeText={emailInputHandler}
-            value={email}
-          />
+          <View>
+            <DefaultInput
+              //iconName="email"
+              label="Email"
+              autoCapitalize="none"
+              autoCorrect={false}
+              onChangeText={emailInputHandler}
+              value={email}
+              autoFocus={true}
+            />
+          </View>
+
           <Spacer />
           <View>
             <DefaultInput
+              //iconName="lock"
               label="Password"
               onChangeText={setPassword}
               value={password}

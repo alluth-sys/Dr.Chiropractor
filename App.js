@@ -9,7 +9,9 @@ import rootReducer from "./redux/reducers";
 import thunk from "redux-thunk";
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
+
 import firebase from "firebase";
+import "@firebase/auth";
 
 //firebase configuration
 const firebaseConfig = {
@@ -25,7 +27,6 @@ const firebaseConfig = {
 if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig);
 }
-
 //load font from ./assets/fonts
 const getFonts = () => {
   return Font.loadAsync({

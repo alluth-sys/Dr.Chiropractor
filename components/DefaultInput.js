@@ -1,8 +1,11 @@
 import React from "react";
 import { View, StyleSheet, Text, TextInput } from "react-native";
+import { Feather } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 
 const DefaultInput = (props) => {
   const { label } = props;
+
   return (
     <View>
       <Text style={styles.label}>{label}</Text>
@@ -19,6 +22,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 10,
     backgroundColor: "#F5F5F5",
+    flexDirection: "row",
   },
   label: {
     marginBottom: 10,
