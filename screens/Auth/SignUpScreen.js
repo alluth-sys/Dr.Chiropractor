@@ -17,7 +17,6 @@ const SignUpScreen = ({ navigation }) => {
   //console.log(navigation);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
 
   const onSignUp = () => {
     firebase
@@ -56,14 +55,6 @@ const SignUpScreen = ({ navigation }) => {
       setPassword(inputText);
     }
   };
-  const userNameInputHandler = (inputText) => {
-    if (inputText === "") {
-      //Input Check
-      setUsername("");
-    } else {
-      setUsername(inputText);
-    }
-  };
 
   return (
     <TouchableWithoutFeedback
@@ -73,64 +64,46 @@ const SignUpScreen = ({ navigation }) => {
     >
       <KeyboardAvoidingView style={styles.container} behavior="height">
         <View style={styles.inner}>
-          <Text style={{ fontFamily: "opensans_bold" }}>
-            Your phone have been confirmed{"\n"}Let us know more about you!
-          </Text>
-          <Spacer />
-          <DefaultInput
-            //iconName="account-box"
-            label="Username "
-            autoCapitalize="none"
-            autoCorrect={false}
-            onChangeText={userNameInputHandler}
-            value={username}
-            //autoCompleteType="email"
-          />
-          <Spacer />
-          <DefaultInput
-            //iconName="email"
-            label="Email"
-            autoCapitalize="none"
-            autoCorrect={false}
-            onChangeText={emailInputHandler}
-            value={email}
-            //autoCompleteType="email"
-          />
-          <Spacer />
-          <View>
+          <View style={styles.card}>
             <DefaultInput
-              iconName="lock"
-              label="Password"
-              onChangeText={setPassword}
-              value={password}
+              iconType="mail"
+              placeholder="Email"
+              autoCapitalize="none"
               autoCorrect={false}
-              secureTextEntry={true}
-              onChangeText={passwordInputHandler}
-              value={password}
+              onChangeText={emailInputHandler}
+              value={email}
             />
-          </View>
+            <Spacer />
+            <View>
+              <DefaultInput
+                iconType="lock"
+                placeholder="Password"
+                onChangeText={setPassword}
+                value={password}
+                autoCorrect={false}
+                secureTextEntry={true}
+                onChangeText={passwordInputHandler}
+                value={password}
+              />
+            </View>
 
-          <Spacer />
-          <Button
-            title="Sign Up"
-            onPress={() => {
-              navigation.navigate("Home");
-              //onSignUp();
-            }}
-            titleStyle={{ fontFamily: "opensans_bold" }}
-            buttonStyle={{
-              backgroundColor: "#007AFE",
-              borderRadius: 50,
-              width: 100,
-            }}
-          />
-          <Spacer />
-          <Text
-            onPress={() => navigation.navigate("Signin")}
-            style={{ fontFamily: "opensans_regular" }}
-          >
-            Already have an account? Sign in here
-          </Text>
+            <Spacer />
+            <Button
+              title="Sign Up"
+              onPress={onSignUp}
+              titleStyle={{ fontFamily: "opensans_bold" }}
+              buttonStyle={{
+                backgroundColor: "#007AFE",
+              }}
+            />
+            <Spacer />
+            <Text
+              onPress={() => navigation.navigate("Signin")}
+              style={{ fontFamily: "opensans_regular" }}
+            >
+              Already have an account? Sign in here
+            </Text>
+          </View>
         </View>
       </KeyboardAvoidingView>
     </TouchableWithoutFeedback>
@@ -138,6 +111,11 @@ const SignUpScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  card: {
+    borderWidth: 2,
+    padding: 30,
+    borderRadius: 5,
+  },
   container: {
     flex: 1,
     backgroundColor: "white",

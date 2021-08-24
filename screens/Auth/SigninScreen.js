@@ -11,6 +11,8 @@ import {
 import { Button } from "react-native-elements";
 import Spacer from "../../components/Spacer";
 import DefaultInput from "../../components/DefaultInput";
+import SocialButton from "../../components/SocialButton";
+
 import firebase from "firebase";
 
 const SignUpScreen = ({ navigation }) => {
@@ -56,56 +58,76 @@ const SignUpScreen = ({ navigation }) => {
     >
       <KeyboardAvoidingView
         style={styles.container}
-        behavior={Platform.OS === "android" ? "padding" : "height"}
+        behavior={Platform.OS === "android" ? "height" : "height"}
       >
         <View style={styles.inner}>
-          <Text style={{ fontFamily: "opensans_bold" }}>
-            Enter your email and password to Sign In!
-          </Text>
-          <Spacer />
-          <View>
+          <View style={styles.card}>
             <DefaultInput
-              //iconName="email"
-              label="Email"
+              iconType="mail"
+              placeholder="Email"
               autoCapitalize="none"
               autoCorrect={false}
               onChangeText={emailInputHandler}
               value={email}
               autoFocus={true}
+              blurOnSubmit={false}
+              autoCompleteType="email"
             />
-          </View>
-
-          <Spacer />
-          <View>
+            <Spacer />
             <DefaultInput
-              //iconName="lock"
-              label="Password"
+              iconType="lock"
+              placeholder="Password"
               onChangeText={setPassword}
               value={password}
               autoCorrect={false}
               secureTextEntry={true}
               onChangeText={passwordInputHandler}
               value={password}
+              blurOnSubmit={false}
             />
-          </View>
 
-          <Spacer />
-          <Button
-            title="Sign In"
-            onPress={() => {
-              //onSignIn();
-            }}
-            titleStyle={{ fontFamily: "opensans_bold" }}
-            buttonStyle={{
-              backgroundColor: "#007AFE",
-              borderRadius: 50,
-              width: 100,
-            }}
+            <Spacer />
+            <Button
+              title="Sign In"
+              onPress={() => {
+                //onSignIn();
+              }}
+              titleStyle={{ fontFamily: "opensans_bold" }}
+              buttonStyle={{
+                backgroundColor: "#007AFE",
+              }}
+            />
+            <View style={{ alignItems: "center" }}>
+              <Text
+                onPress={() => null}
+                style={{
+                  fontFamily: "opensans_bold",
+                  color: "#2e64e5",
+                  marginTop: 10,
+                }}
+              >
+                Forgot Password?
+              </Text>
+            </View>
+          </View>
+          <SocialButton
+            buttonTitle="Sign In with Google"
+            btnType="google"
+            color="#de4d41"
+            backgroundColor="#f5e7ea"
+            onPress={() => null}
+          />
+          <SocialButton
+            buttonTitle="Sign In with Facebook"
+            btnType="facebook"
+            color="#4867aa"
+            backgroundColor="#e6eaf4"
+            onPress={() => null}
           />
           <Spacer />
           <Text
             onPress={() => navigation.navigate("Signup")}
-            style={{ fontFamily: "opensans_regular" }}
+            style={{ fontFamily: "opensans_bold", color: "#2e64e5" }}
           >
             Don't have an account? Sign Up here
           </Text>
@@ -126,11 +148,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  card: {
+    width: "80%",
+    padding: 30,
+    //borderRadius: 5,
+  },
 });
 
 export const screenOptions = () => {
   return {
     headerTitle: "Sign In",
+    headerLeft: () => null,
   };
 };
 

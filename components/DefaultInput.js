@@ -5,9 +5,13 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 const DefaultInput = (props) => {
   const { label } = props;
+  const { iconType } = props;
 
   return (
-    <View>
+    <View style={styles.inputContainer}>
+      <View style={styles.iconStyle}>
+        <Feather name={iconType} size={24} color="#666" />
+      </View>
       <Text style={styles.label}>{label}</Text>
       <TextInput style={{ ...styles.input, ...props.style }} {...props} />
     </View>
@@ -15,14 +19,20 @@ const DefaultInput = (props) => {
 };
 
 const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    width: 250,
-    padding: 5,
-    borderWidth: 2,
-    borderRadius: 10,
-    backgroundColor: "#F5F5F5",
+  inputContainer: {
     flexDirection: "row",
+    borderWidth: 2,
+  },
+  iconStyle: {
+    padding: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRightWidth: 2,
+    borderRightColor: "#ccc",
+  },
+  input: {
+    padding: 5,
+    flex: 1,
   },
   label: {
     marginBottom: 10,

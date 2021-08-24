@@ -13,7 +13,6 @@ import Appointment from "../screens/Main/AppointmentScreen";
 import AppointmentDetail from "../screens/Main/AppointmentDetail";
 import SearchScreen from "../screens/Main/SearchScreen";
 import TrainerDetailScreen from "../screens/Main/TrainerDetailScreen";
-import { createPortal } from "react-dom";
 
 const Tab = createBottomTabNavigator();
 

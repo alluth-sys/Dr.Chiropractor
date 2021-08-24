@@ -3,13 +3,11 @@ import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import AppNavigator from "./navigation/AppNavigator";
-import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
-import rootReducer from "./redux/reducers";
-import thunk from "redux-thunk";
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+// State Management Package
+import { AuthProvider } from "./provider/AuthProvider";
 
+// Firebase Package
 import firebase from "firebase";
 import "@firebase/auth";
 
@@ -27,6 +25,7 @@ const firebaseConfig = {
 if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig);
 }
+
 //load font from ./assets/fonts
 const getFonts = () => {
   return Font.loadAsync({
@@ -39,20 +38,6 @@ const getFonts = () => {
 
 export default function App() {
   [fontsLoaded, setFontsLoaded] = useState(false); //set initial load font state as false
-  [userIsLoaded, setUserIsLoaded] = useState(false);
-  [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (!user) {
-        setUserIsLoggedIn(false);
-        setUserIsLoaded(true);
-      } else {
-        setUserIsLoggedIn(true);
-        setUserIsLoaded(true);
-      }
-    });
-  }, []);
 
   if (!fontsLoaded) {
     return (
@@ -69,9 +54,9 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
-        <Provider store={store}>
+        <AuthProvider>
           <AppNavigator />
-        </Provider>
+        </AuthProvider>
       </SafeAreaProvider>
     );
   }

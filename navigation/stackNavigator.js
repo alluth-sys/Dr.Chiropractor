@@ -14,9 +14,6 @@ import SignUpScreen, {
 import OTPScreen, {
   screenOptions as OTPScreenOptions,
 } from "../screens/Auth/OTPScreen";
-import OTPReceivedScreen, {
-  screenOptions as OTPReceivedScreenOptions,
-} from "../screens/Auth/OTPReceivedScreen";
 
 const defaultNavigationOptions = {
   headerTitleStyle: {
@@ -43,19 +40,14 @@ export const AuthNavigator = () => {
         options={OTPScreenOptions}
       />
       <AuthStackNavigator.Screen
-        name="OTPReceived"
-        component={OTPReceivedScreen}
-        options={OTPReceivedScreenOptions}
+        name="Signin"
+        component={SigninScreen}
+        options={SignInScreenOptions}
       />
       <AuthStackNavigator.Screen
         name="Signup"
         component={SignUpScreen}
         options={SignUpScreenOptions}
-      />
-      <AuthStackNavigator.Screen
-        name="Signin"
-        component={SigninScreen}
-        options={SignInScreenOptions}
       />
     </AuthStackNavigator.Navigator>
   );
