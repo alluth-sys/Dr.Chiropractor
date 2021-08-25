@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   StyleSheet,
   View,
@@ -12,49 +12,14 @@ import { Button } from "react-native-elements";
 import Spacer from "../../components/Spacer";
 import DefaultInput from "../../components/DefaultInput";
 import firebase from "firebase";
+import { AuthContext } from "../../provider/AuthProvider";
+import { reflect } from "async";
 
 const SignUpScreen = ({ navigation }) => {
   //console.log(navigation);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const onSignUp = () => {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then((result) => {
-        firebase
-          .firestore()
-          .collection("users")
-          .doc(firebase.auth().currentUser.uid)
-          .set({
-            username,
-            email,
-          });
-        console.log(result);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  //For validating User Input
-  const emailInputHandler = (inputText) => {
-    if (inputText === "") {
-      //Input Check
-      setEmail("");
-    } else {
-      setEmail(inputText);
-    }
-  };
-  const passwordInputHandler = (inputText) => {
-    if (inputText === "") {
-      //Input Check
-      setPassword("");
-    } else {
-      setPassword(inputText);
-    }
-  };
+  const { register } = useContext(AuthContext);
 
   return (
     <TouchableWithoutFeedback
@@ -70,7 +35,7 @@ const SignUpScreen = ({ navigation }) => {
               placeholder="Email"
               autoCapitalize="none"
               autoCorrect={false}
-              onChangeText={emailInputHandler}
+              onChangeText={setEmail}
               value={email}
             />
             <Spacer />
@@ -82,15 +47,15 @@ const SignUpScreen = ({ navigation }) => {
                 value={password}
                 autoCorrect={false}
                 secureTextEntry={true}
-                onChangeText={passwordInputHandler}
-                value={password}
               />
             </View>
 
             <Spacer />
             <Button
               title="Sign Up"
-              onPress={onSignUp}
+              onPress={() => {
+                register(email, password);
+              }}
               titleStyle={{ fontFamily: "opensans_bold" }}
               buttonStyle={{
                 backgroundColor: "#007AFE",

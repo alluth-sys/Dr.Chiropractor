@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   StyleSheet,
   View,
@@ -14,41 +14,13 @@ import DefaultInput from "../../components/DefaultInput";
 import SocialButton from "../../components/SocialButton";
 
 import firebase from "firebase";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const SignUpScreen = ({ navigation }) => {
   //console.log(navigation);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const onSignIn = () => {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  //For validating User Input
-  const emailInputHandler = (inputText) => {
-    if (inputText === "") {
-      //Input Check
-      setEmail("");
-    } else {
-      setEmail(inputText);
-    }
-  };
-  const passwordInputHandler = (inputText) => {
-    if (inputText === "") {
-      //Input Check
-      setPassword("");
-    } else {
-      setPassword(inputText);
-    }
-  };
+  const { login } = useContext(AuthContext);
 
   return (
     <TouchableWithoutFeedback
@@ -67,7 +39,7 @@ const SignUpScreen = ({ navigation }) => {
               placeholder="Email"
               autoCapitalize="none"
               autoCorrect={false}
-              onChangeText={emailInputHandler}
+              onChangeText={setEmail}
               value={email}
               autoFocus={true}
               blurOnSubmit={false}
@@ -81,8 +53,6 @@ const SignUpScreen = ({ navigation }) => {
               value={password}
               autoCorrect={false}
               secureTextEntry={true}
-              onChangeText={passwordInputHandler}
-              value={password}
               blurOnSubmit={false}
             />
 
@@ -90,7 +60,7 @@ const SignUpScreen = ({ navigation }) => {
             <Button
               title="Sign In"
               onPress={() => {
-                //onSignIn();
+                login(email, password);
               }}
               titleStyle={{ fontFamily: "opensans_bold" }}
               buttonStyle={{
