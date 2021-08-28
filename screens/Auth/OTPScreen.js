@@ -9,6 +9,7 @@ import {
   TouchableWithoutFeedback,
   Platform,
   Alert,
+  ActivityIndicator,
 } from "react-native";
 import SafeAreaView from "react-native-safe-area-view";
 import { Button } from "react-native-elements";
@@ -24,6 +25,7 @@ const OTPScreen = ({ navigation }) => {
   const [phoneButtonEnable, setPhoneButtonEnable] = useState(true);
   const [confirmButtonEnable, setConfirmButtonEnable] = useState(true);
   const codeFieldRef = useRef();
+  const [isLoading, setIsLoading] = useState(false);
 
   const codeHandler = (code) => {
     if (code.length == 6) {
@@ -58,10 +60,10 @@ const OTPScreen = ({ navigation }) => {
   const sendVerification = async () => {
     if (phoneNumber[0] === "0") {
       phoneNumber = "+886" + phoneNumber.substring(1);
-      console.log(phoneNumber);
+      //console.log(phoneNumber);
     } else if (phoneNumber[0] !== "0") {
       phoneNumber = "+886" + phoneNumber;
-      console.log(phoneNumber);
+      //console.log(phoneNumber);
     }
     Keyboard.dismiss();
     try {
@@ -77,6 +79,7 @@ const OTPScreen = ({ navigation }) => {
   };
 
   const confirmCode = async () => {
+    setIsLoading(true);
     Keyboard.dismiss();
     try {
       const credential = firebase.auth.PhoneAuthProvider.credential(
@@ -86,6 +89,7 @@ const OTPScreen = ({ navigation }) => {
       await firebase.auth().signInWithCredential(credential);
       navigation.navigate("Signup");
     } catch (err) {
+      setIsLoading(false);
       codeAlert();
     }
   };
@@ -159,18 +163,24 @@ const OTPScreen = ({ navigation }) => {
                 blurOnSubmit={false}
               />
               <Spacer />
-              <Button
-                title="Confirm"
-                titleStyle={{ fontFamily: "opensans_bold" }}
-                buttonStyle={{
-                  backgroundColor: "#007AFE",
-                  borderRadius: 10,
-                  width: 200,
-                  alignSelf: "center",
-                }}
-                onPress={confirmCode}
-                disabled={confirmButtonEnable}
-              />
+              <View>
+                {isLoading ? (
+                  <ActivityIndicator size="large" color={"#007AFE"} />
+                ) : (
+                  <Button
+                    title="Confirm"
+                    titleStyle={{ fontFamily: "opensans_bold" }}
+                    buttonStyle={{
+                      backgroundColor: "#007AFE",
+                      borderRadius: 10,
+                      width: 200,
+                      alignSelf: "center",
+                    }}
+                    onPress={confirmCode}
+                    disabled={confirmButtonEnable}
+                  />
+                )}
+              </View>
             </View>
             <View style={styles.textStyle}>
               <Text

@@ -6,6 +6,7 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
+  ActivityIndicator,
 } from "react-native";
 
 import { Button } from "react-native-elements";
@@ -13,7 +14,6 @@ import Spacer from "../../components/Spacer";
 import DefaultInput from "../../components/DefaultInput";
 import SocialButton from "../../components/SocialButton";
 
-import firebase from "firebase";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const SignUpScreen = ({ navigation }) => {
@@ -21,6 +21,7 @@ const SignUpScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login } = useContext(AuthContext);
+  const [isloading, setIsLoading] = useState(false);
 
   return (
     <TouchableWithoutFeedback
@@ -41,7 +42,6 @@ const SignUpScreen = ({ navigation }) => {
               autoCorrect={false}
               onChangeText={setEmail}
               value={email}
-              autoFocus={true}
               blurOnSubmit={false}
               autoCompleteType="email"
             />
@@ -57,16 +57,28 @@ const SignUpScreen = ({ navigation }) => {
             />
 
             <Spacer />
-            <Button
-              title="Sign In"
-              onPress={() => {
-                login(email, password);
-              }}
-              titleStyle={{ fontFamily: "opensans_bold" }}
-              buttonStyle={{
-                backgroundColor: "#007AFE",
-              }}
-            />
+            <View>
+              {isloading ? (
+                <ActivityIndicator size="large" color={"#007AFE"} />
+              ) : (
+                <Button
+                  title="Sign In"
+                  onPress={() => {
+                    try {
+                      setIsLoading(true);
+                      login(email, password);
+                    } catch (e) {
+                      setIsLoading(false);
+                    }
+                  }}
+                  titleStyle={{ fontFamily: "opensans_bold" }}
+                  buttonStyle={{
+                    backgroundColor: "#007AFE",
+                  }}
+                />
+              )}
+            </View>
+
             <View style={{ alignItems: "center" }}>
               <Text
                 onPress={() => null}
@@ -119,7 +131,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   card: {
-    width: "80%",
+    width: "90%",
     padding: 30,
     //borderRadius: 5,
   },

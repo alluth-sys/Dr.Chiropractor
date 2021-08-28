@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
+import { ActivityIndicator, StyleSheet } from "react-native";
 
 import { AuthNavigator } from "./stackNavigator";
 import { MainNavigator } from "./tabNavigator";
@@ -7,13 +8,14 @@ import { MainNavigator } from "./tabNavigator";
 import { AuthContext } from "../provider/AuthProvider";
 import firebase from "firebase";
 import "@firebase/auth";
+import { View } from "react-native";
 
 const AppNavigator = () => {
   const { user, setUser } = useContext(AuthContext);
   const [initializing, setInitializing] = useState(true);
 
   const onAuthStateChanged = (user) => {
-    console.log(user);
+    //console.log(user);
     setUser(user);
     if (initializing) {
       setInitializing(false);
@@ -26,7 +28,12 @@ const AppNavigator = () => {
   }, []);
 
   //Can use Activity Indicator
-  if (initializing) return null;
+  if (initializing)
+    return (
+      <View style={styles.loader}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
 
   return (
     <NavigationContainer>
@@ -34,5 +41,13 @@ const AppNavigator = () => {
     </NavigationContainer>
   );
 };
+
+const styles = StyleSheet.create({
+  loader: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
 
 export default AppNavigator;
