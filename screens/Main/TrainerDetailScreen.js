@@ -15,4 +15,6 @@ const TrainerDetailScreen = (props) => {
 
 const styles = StyleSheet.create({});
 
+export const screenOptions = () => {};
+
 export default TrainerDetailScreen;

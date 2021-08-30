@@ -21,4 +21,6 @@ const styles = StyleSheet.create({
   },
 });
 
+export const screenOptions = () => {};
+
 export default Account;

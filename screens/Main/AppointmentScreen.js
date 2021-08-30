@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import SafeAreaView from "react-native-safe-area-view";
 
@@ -20,5 +20,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
+
+export const screenOptions = () => {
+  return {
+    title: "Appointment",
+  };
+};
 
 export default AppointmentScreen;

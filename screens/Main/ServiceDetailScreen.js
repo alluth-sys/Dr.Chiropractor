@@ -3,18 +3,24 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import SafeAreaView from "react-native-safe-area-view";
 
-const AppointmentDetail = (props) => {
+const ServiceDetailScreen = (props) => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <View>
-        <Text>AppointmentDetail</Text>
+        <Text>ServiceDetailScreen</Text>
       </View>
     </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
 
 export const screenOptions = () => {};
 
-export default AppointmentDetail;
+export default ServiceDetailScreen;

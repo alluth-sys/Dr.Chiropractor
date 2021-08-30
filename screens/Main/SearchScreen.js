@@ -1,14 +1,42 @@
-import React from "react";
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
-import { StatusBar } from "expo-status-bar";
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Platform,
+  StatusBar,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 import SafeAreaView from "react-native-safe-area-view";
+import { SearchBar } from "react-native-elements";
 
 const SearchScreen = (props) => {
+  const [search, setSearch] = useState("");
+
   return (
-    <SafeAreaView style={styles.container}>
-      <View>
-        <Text>SearchScreen</Text>
-      </View>
+    <SafeAreaView style={{ flex: 1 }} forceInset={{ bottom: "never" }}>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          Keyboard.dismiss();
+        }}
+      >
+        <KeyboardAvoidingView
+          style={styles.container}
+          behavior={Platform.OS === "android" ? "height" : "height"}
+        >
+          <StatusBar barStyle={"dark-content"} />
+          <View style={styles.searchBarContainer}>
+            <SearchBar
+              placeholder="Type here"
+              onChangeText={setSearch}
+              value={search}
+              platform={Platform.OS === "ios" ? "ios" : "android"}
+            />
+          </View>
+        </KeyboardAvoidingView>
+      </TouchableWithoutFeedback>
     </SafeAreaView>
   );
 };
@@ -18,7 +46,23 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "white",
+  },
+  iconContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  searchBarContainer: {
+    flex: 1,
+    width: "80%",
+    borderRadius: 5,
   },
 });
+
+export const screenOptions = () => {
+  return {
+    title: "Search",
+  };
+};
 
 export default SearchScreen;

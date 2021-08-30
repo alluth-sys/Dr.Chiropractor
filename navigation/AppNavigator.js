@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { ActivityIndicator, StyleSheet } from "react-native";
 
-import { AuthNavigator } from "./stackNavigator";
-import { MainNavigator } from "./tabNavigator";
+import { AuthNavigator } from "./AuthStackNavigator";
+import { MainNavigator } from "./MainTabNavigator";
 
 import { AuthContext } from "../provider/AuthProvider";
 import firebase from "firebase";
@@ -15,7 +15,6 @@ const AppNavigator = () => {
   const [initializing, setInitializing] = useState(true);
 
   const onAuthStateChanged = (user) => {
-    //console.log(user);
     setUser(user);
     if (initializing) {
       setInitializing(false);
@@ -27,7 +26,6 @@ const AppNavigator = () => {
     return subscriber;
   }, []);
 
-  //Can use Activity Indicator
   if (initializing)
     return (
       <View style={styles.loader}>

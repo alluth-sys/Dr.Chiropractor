@@ -1,18 +1,15 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
 import { StyleSheet, View, Platform } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 
 //Main Flow
-import Account from "../screens/Main/Account";
-import HomeScreen, {
-  screenOptions as HomeScreenScreenOptions,
-} from "../screens/Main/HomeScreen";
-import Appointment from "../screens/Main/AppointmentScreen";
-import AppointmentDetail from "../screens/Main/AppointmentDetail";
-import SearchScreen from "../screens/Main/SearchScreen";
-import TrainerDetailScreen from "../screens/Main/TrainerDetailScreen";
+import { HomeScreenNavigator } from "./MainStackNavigator";
+import { SearchScreenNavigator } from "./MainStackNavigator";
+import { AppointmentScreenNavigator } from "./MainStackNavigator";
+import { AccountScreenNavigator } from "./MainStackNavigator";
 
 const Tab = createBottomTabNavigator();
 
@@ -26,18 +23,18 @@ export const MainNavigator = () => {
           bottom: 25,
           left: 20,
           right: 20,
-          elevation: 0,
-          backgroundColor: "#ffffff",
+          backgroundColor: "black",
           borderRadius: 15,
           height: 90,
-          ...styles.shadow,
+          elevation: 2,
         },
-        activeTintColor: "#007AFE",
+        activeTintColor: "white",
+        ...styles.shadow,
       }}
     >
       <Tab.Screen
         name="Home"
-        component={HomeScreen}
+        component={HomeScreenNavigator}
         options={{
           tabBarIcon: ({ color }) => {
             return (
@@ -50,7 +47,7 @@ export const MainNavigator = () => {
       />
       <Tab.Screen
         name="Search"
-        component={SearchScreen}
+        component={SearchScreenNavigator}
         options={{
           tabBarIcon: ({ color }) => {
             return (
@@ -63,7 +60,7 @@ export const MainNavigator = () => {
       />
       <Tab.Screen
         name="Appointment"
-        component={Appointment}
+        component={AppointmentScreenNavigator}
         options={{
           tabBarIcon: ({ color }) => {
             return (
@@ -76,7 +73,7 @@ export const MainNavigator = () => {
       />
       <Tab.Screen
         name="Account"
-        component={Account}
+        component={AccountScreenNavigator}
         options={{
           tabBarIcon: ({ color }) => {
             return (
