@@ -8,6 +8,24 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
+  const storeData = async (value) => {
+    try {
+      const userData = JSON.stringify(value);
+      await AsyncStorage.setItem("userData", userData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getData = async (data) => {
+    try {
+      const jsonValue = await AsyncStorage.getItem(data);
+      return jsonValue != null ? JSON.parse(jsonValue) : null;
+    } catch (e) {
+      // error reading value
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -21,8 +39,8 @@ export const AuthProvider = ({ children }) => {
 
             console.log(await response.user);
             if (response) {
-              storeData(response.user);
-              getData("userData");
+              //storeData(response.user);
+              //getData("userData");
             }
           } catch (e) {
             setIsLoading(false);
@@ -61,20 +79,4 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-const storeData = async (value) => {
-  try {
-    const userData = JSON.stringify(value);
-    await AsyncStorage.setItem("userData", userData);
-  } catch (error) {
-    console.log(error);
-  }
-};
 
-const getData = async (data) => {
-  try {
-    const jsonValue = await AsyncStorage.getItem(data);
-    return jsonValue != null ? JSON.parse(jsonValue) : null;
-  } catch (e) {
-    // error reading value
-  }
-};

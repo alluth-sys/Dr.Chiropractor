@@ -6,14 +6,12 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
-  Platform,
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
 import { Button } from "react-native-elements";
 import Spacer from "../../components/Spacer";
 import DefaultInput from "../../components/DefaultInput";
-import firebase from "firebase";
 import { AuthContext } from "../../provider/AuthProvider";
 import SocialButton from "../../components/SocialButton";
 

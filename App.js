@@ -41,15 +41,14 @@ export default function App() {
 
   if (!fontsLoaded) {
     return (
-      <>
-        <AppLoading
-          startAsync={getFonts}
-          onFinish={() => {
-            setFontsLoaded(true);
-          }}
-          onError={console.warn}
-        />
-      </>
+      <AppLoading
+        startAsync={getFonts}
+        onFinish={() => {
+          setFontsLoaded(true);
+        }}
+        onError={console.warn}
+      />
+
     );
   } else {
     return (
