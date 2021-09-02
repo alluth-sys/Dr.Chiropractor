@@ -28,7 +28,10 @@ const AuthStackNavigator = createStackNavigator();
 
 export const AuthNavigator = () => {
   return (
-    <AuthStackNavigator.Navigator screenOptions={defaultNavigationOptions}>
+    <AuthStackNavigator.Navigator
+      screenOptions={defaultNavigationOptions}
+      initialRouteName={"Welcome"}
+    >
       <AuthStackNavigator.Screen
         name="Welcome"
         component={WelcomeScreen}

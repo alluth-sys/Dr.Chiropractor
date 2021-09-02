@@ -24,6 +24,8 @@ const styles = StyleSheet.create({
 export const screenOptions = () => {
   return {
     title: "Appointment",
+    headerTitleAlign: "center",
+    headerTitleStyle: { fontFamily: "rufina_bold" },
   };
 };
 

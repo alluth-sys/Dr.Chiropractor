@@ -1,3 +1,4 @@
+import "react-native-gesture-handler";
 import React, { useState, useEffect } from "react";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
@@ -48,7 +49,6 @@ export default function App() {
         }}
         onError={console.warn}
       />
-
     );
   } else {
     return (

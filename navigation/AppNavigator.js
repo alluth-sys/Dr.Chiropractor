@@ -1,3 +1,4 @@
+import "react-native-gesture-handler";
 import React, { useContext, useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { ActivityIndicator, StyleSheet } from "react-native";
@@ -35,7 +36,7 @@ const AppNavigator = () => {
 
   return (
     <NavigationContainer>
-      {<AuthNavigator />}
+      {user ? <MainNavigator /> : <AuthNavigator />}
     </NavigationContainer>
   );
 };

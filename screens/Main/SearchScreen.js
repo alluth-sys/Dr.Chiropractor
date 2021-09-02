@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   StyleSheet,
   View,
-  Text,
   Platform,
   StatusBar,
   KeyboardAvoidingView,
@@ -26,7 +25,9 @@ const SearchScreen = (props) => {
           style={styles.container}
           behavior={Platform.OS === "android" ? "height" : "height"}
         >
-          <StatusBar barStyle={"dark-content"} />
+          {Platform.OS === "ios" ? (
+            <StatusBar barStyle={"dark-content"} />
+          ) : null}
           <View style={styles.searchBarContainer}>
             <SearchBar
               placeholder="Type here"
@@ -62,6 +63,8 @@ const styles = StyleSheet.create({
 export const screenOptions = () => {
   return {
     title: "Search",
+    headerTitleAlign: "center",
+    headerTitleStyle: { fontFamily: "rufina_bold" },
   };
 };
 

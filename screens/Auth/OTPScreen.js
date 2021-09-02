@@ -10,7 +10,7 @@ import {
   Platform,
   Alert,
   ActivityIndicator,
-  SafeAreaView
+  SafeAreaView,
 } from "react-native";
 import { Button } from "react-native-elements";
 import Spacer from "../../components/Spacer";
@@ -109,7 +109,6 @@ const OTPScreen = ({ navigation }) => {
             <FirebaseRecaptchaVerifierModal
               ref={recaptchaVerifier}
               firebaseConfig={firebase.app().options}
-              attemptInvisibleVerification={true}
             />
             <View style={styles.card}>
               {/* Phone Verification */}
@@ -210,7 +209,6 @@ const styles = StyleSheet.create({
     padding: 40,
     borderRadius: 10,
     shadowColor: "#7F5DF0",
-    elevation: 2,
   },
   inputContainer: {
     paddingLeft: 5,

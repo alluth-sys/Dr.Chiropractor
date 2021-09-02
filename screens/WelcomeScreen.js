@@ -4,9 +4,10 @@ import { StatusBar } from "expo-status-bar";
 import { RFValue } from "react-native-responsive-fontsize";
 import { Button } from "react-native-elements";
 
-const WelcomeScreen = (props) => {
+const WelcomeScreen = ({ navigation }) => {
+  //console.log(props);
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <StatusBar StatusBarStyle="white" />
       <View>
         <Text style={styles.text}>Chiropractor</Text>
@@ -16,10 +17,10 @@ const WelcomeScreen = (props) => {
           title="Get Started"
           buttonStyle={styles.buttonStyle}
           titleStyle={{ fontFamily: "opensans_bold" }}
-          onPress={() => props.navigation.navigate("OTP")}
+          onPress={() => navigation.navigate("OTP")}
         />
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

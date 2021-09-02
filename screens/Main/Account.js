@@ -21,6 +21,12 @@ const styles = StyleSheet.create({
   },
 });
 
-export const screenOptions = () => {};
+export const screenOptions = () => {
+  return {
+    title: "Account",
+    headerTitleAlign: "center",
+    headerTitleStyle: { fontFamily: "rufina_bold" },
+  };
+};
 
 export default Account;
