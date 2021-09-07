@@ -3,7 +3,7 @@
 - expo cli
 - React Navigation Version 5
 - Firebase (Authentication)
-- Redux
+- useContext Api as State Management
 
 ## To Start Project:
 1. npm install
