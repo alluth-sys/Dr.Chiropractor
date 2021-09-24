@@ -25,9 +25,9 @@ const SearchScreen = (props) => {
           style={styles.container}
           behavior={Platform.OS === "android" ? "height" : "height"}
         >
-          {Platform.OS === "ios" ? (
+          {/* {Platform.OS === "ios" ? (
             <StatusBar barStyle={"dark-content"} />
-          ) : null}
+          ) : null} */}
           <View style={styles.searchBarContainer}>
             <SearchBar
               placeholder="Type here"
