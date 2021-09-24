@@ -10,7 +10,7 @@ const WelcomeScreen = ({ navigation }) => {
     <View style={styles.container}>
       <StatusBar StatusBarStyle="white" />
       <View>
-        <Text style={styles.text}>Chiropractor</Text>
+        <Text style={styles.text}>Doctor Massage</Text>
       </View>
       <View style={styles.buttonContainer}>
         <Button

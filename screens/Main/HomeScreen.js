@@ -1,20 +1,54 @@
-import React, { useContext } from "react";
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import React, { useContext, useState, useEffect } from "react";
+import { ActivityIndicator, StyleSheet, View, Text, TouchableOpacity , FlatList} from "react-native";
 import { StatusBar } from "expo-status-bar";
 import SafeAreaView from "react-native-safe-area-view";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const HomeScreen = (props) => {
   const { logout } = useContext(AuthContext);
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+
+  const getDoctor = async () => {
+    try {
+     const response = await fetch('http://192.168.2.133:8000/api/doctor/list');
+     const json = await response.json();
+     setData(json);
+   } catch (error) {
+     console.error(error);
+   } finally {
+     setLoading(false);
+   }
+  }
+  useEffect(() => {
+    getDoctor();
+  }, []);
+
+  const HandleRefresh = async() => {
+    setLoading(true);
+    getDoctor();
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <Text>HomeScreen</Text>
+      <Text>HomeScreen</Text>
         <TouchableOpacity onPress={logout}>
           <Text>Logout</Text>
         </TouchableOpacity>
+        {isLoading ? <ActivityIndicator/> : (
+        <FlatList
+          data={data}
+          keyExtractor={({ id }, index) => id.toString()}
+          renderItem={({ item }) => (
+            <Text>{item.surname}, {item.name}</Text>
+          )}
+          onRefresh={HandleRefresh}
+          refreshing={isLoading}
+        />
+        )}
       </View>
+      
     </SafeAreaView>
   );
 };
