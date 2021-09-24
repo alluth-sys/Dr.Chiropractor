@@ -15,7 +15,10 @@ const SearchScreen = (props) => {
   const [search, setSearch] = useState("");
 
   return (
-    <SafeAreaView style={{ flex: 1 }} forceInset={{ bottom: "never" }}>
+    <SafeAreaView
+      style={{ flex: 1, paddingTop: 0 }}
+      forceInset={{ bottom: "never" }}
+    >
       <TouchableWithoutFeedback
         onPress={() => {
           Keyboard.dismiss();
@@ -26,7 +29,7 @@ const SearchScreen = (props) => {
           behavior={Platform.OS === "android" ? "height" : "height"}
         >
           {Platform.OS === "ios" ? (
-            <StatusBar barStyle={"dark-content"} />
+            <StatusBar barStyle={"dark-content"} translucent={true} />
           ) : null}
           <View style={styles.searchBarContainer}>
             <SearchBar
