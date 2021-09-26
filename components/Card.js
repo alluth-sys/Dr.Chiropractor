@@ -6,13 +6,16 @@ import {
   StyleSheet,
   ImageBackground,
 } from "react-native";
-import { DOCTORS } from "../data/dummyDoctorData";
 import { AntDesign } from "@expo/vector-icons";
 
 const Card = (props) => {
   const { doctor } = props;
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => props.navigation.navigate("TrainerDetail", doctor)}
+      activeOpacity={1}
+    >
       <ImageBackground
         source={{ uri: doctor.imageUrl }}
         style={styles.imageStyle}

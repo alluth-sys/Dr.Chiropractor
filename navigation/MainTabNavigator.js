@@ -20,16 +20,17 @@ export const MainNavigator = () => {
         showLabel: false,
         style: {
           position: "absolute",
-          bottom: 25,
-          left: 20,
-          right: 20,
+          bottom: Platform.OS === "ios" ? 25 : 0,
+          left: Platform.OS === "ios" ? 20 : 0,
+          right: Platform.OS === "ios" ? 20 : 0,
           backgroundColor: "black",
-          borderRadius: 15,
-          height: 90,
+          borderRadius: Platform.OS === "ios" ? 15 : 0,
+          height: Platform.OS === "ios" ? 90 : 70,
           elevation: 2,
         },
         activeTintColor: "white",
         ...styles.shadow,
+        keyboardHidesTabBar: true,
       }}
     >
       <Tab.Screen

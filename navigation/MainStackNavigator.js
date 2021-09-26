@@ -35,12 +35,12 @@ export const HomeScreenNavigator = () => {
         options={HomeScreenOptions}
       />
       <MainStackNavigator.Screen
-        name="Trainer Detail"
+        name="TrainerDetail"
         component={TrainerDetailScreen}
         options={TrainerDetailScreenOptions}
       />
       <MainStackNavigator.Screen
-        name="Service Detail"
+        name="ServiceDetail"
         component={ServiceDetailScreen}
         options={ServiceDetailScreenOptions}
       />

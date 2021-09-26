@@ -24,7 +24,7 @@ const HomeScreen = (props) => {
           style={{ flexGrow: 0 }}
           showsHorizontalScrollIndicator={false}
           renderItem={({ item }) => {
-            return <Card doctor={item} />;
+            return <Card doctor={item} navigation={props.navigation} />;
           }}
         />
         <Text style={styles.textStyle}>Our Services</Text>

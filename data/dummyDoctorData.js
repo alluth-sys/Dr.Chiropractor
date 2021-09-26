@@ -5,7 +5,7 @@ export const DOCTORS = [
     1,
     "Sarah",
     "https://images.pexels.com/photos/4270088/pexels-photo-4270088.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    "Description",
+    "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique",
     200,
     4.5,
     "Personal Trainer "
@@ -14,7 +14,7 @@ export const DOCTORS = [
     2,
     "Abe",
     "https://cdn.pixabay.com/photo/2018/03/27/16/24/corporal-3266508_960_720.jpg",
-    "Description",
+    "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique",
     100,
     4.2,
     "Chiropractor"
