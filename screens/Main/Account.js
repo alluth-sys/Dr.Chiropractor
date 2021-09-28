@@ -5,11 +5,14 @@ import SafeAreaView from "react-native-safe-area-view";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Account = (props) => {
-  const { user } = useContext(AuthContext);
+  const { logout } = useContext(AuthContext);
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <Text>{AuthContext.user}</Text>
+        <Text>Account</Text>
+        <TouchableOpacity onPress={logout}>
+          <Text>Logout</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );

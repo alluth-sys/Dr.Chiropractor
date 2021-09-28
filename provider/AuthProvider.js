@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
       const jsonValue = await AsyncStorage.getItem(data);
       return jsonValue != null ? JSON.parse(jsonValue) : null;
     } catch (e) {
-      // error reading value
+      console.log("error reading value");
     }
   };
 
@@ -39,8 +39,8 @@ export const AuthProvider = ({ children }) => {
 
             console.log(await response.user);
             if (response) {
-              //storeData(response.user);
-              //getData("userData");
+              storeData(response.user);
+              getData("userData");
             }
           } catch (e) {
             setIsLoading(false);
@@ -78,5 +78,3 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-
-
