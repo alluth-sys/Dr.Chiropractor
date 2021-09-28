@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { ActivityIndicator, StyleSheet, View, Text, TouchableOpacity , FlatList} from "react-native";
+import { ActivityIndicator, StyleSheet, View, Text, TouchableOpacity , FlatList, Image} from "react-native";
 import { StatusBar } from "expo-status-bar";
 import SafeAreaView from "react-native-safe-area-view";
 import { AuthContext } from "../../provider/AuthProvider";
@@ -32,16 +32,23 @@ const HomeScreen = (props) => {
   return (
     <SafeAreaView style={styles.container}>
       <View>
-      <Text>HomeScreen</Text>
-        <TouchableOpacity onPress={logout}>
-          <Text>Logout</Text>
-        </TouchableOpacity>
         {isLoading ? <ActivityIndicator/> : (
         <FlatList
           data={data}
           keyExtractor={({ id }, index) => id.toString()}
           renderItem={({ item }) => (
-            <Text>{item.surname}, {item.name}</Text>
+            <><Image source={{uri:item.imgurl}} /* Use item to set the image source */
+              key={item.id} /* Important to set a key for list items,
+                   but it's wrong to use indexes as keys, see below */
+
+              style={{
+                width: 200,
+                height: 200,
+                borderWidth: 2,
+                borderColor: '#d35647',
+                resizeMode: 'contain',
+                margin: 8
+              }} /><Text>{item.surname}, {item.name}</Text></>
           )}
           onRefresh={HandleRefresh}
           refreshing={isLoading}
