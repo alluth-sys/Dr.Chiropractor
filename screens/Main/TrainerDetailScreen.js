@@ -41,11 +41,11 @@ const TrainerDetailScreen = (props) => {
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.cardStyle}>
             <Image
-              source={{ uri: doctor.imageUrl }}
+              source={{ uri: doctor.imgurl }}
               style={styles.imageStyle}
             />
             <Text style={{ ...styles.textStyle, marginTop: 10 }}>
-              Dr.{doctor.name}
+              Dr.{doctor.surname}{doctor.name}
             </Text>
             <SmallSpacer />
             <View style={styles.ratingStyle}>

@@ -6,7 +6,6 @@ import { DOCTORS } from "../../data/dummyDoctorData";
 import Card from "../../components/Card";
 
 const HomeScreen = (props) => {
-  const { logout } = useContext(AuthContext);
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
@@ -44,35 +43,19 @@ const HomeScreen = (props) => {
         <FlatList
           data={data}
           keyExtractor={({ id }, index) => id.toString()}
-          renderItem={({ item }) => (
-            <><Image source={{uri:item.imgurl}} /* Use item to set the image source */
-              key={item.id} /* Important to set a key for list items,
-                   but it's wrong to use indexes as keys, see below */
-
-              style={{
-                width: 200,
-                height: 200,
-                borderWidth: 2,
-                borderColor: '#d35647',
-                resizeMode: 'contain',
-                margin: 8
-              }} /><Text>{item.surname}, {item.name}</Text></>
-          )}
-          onRefresh={HandleRefresh}
-          refreshing={isLoading}
-        />
-        )}
-        <FlatList
-          data={DOCTORS}
-          keyExtractor={(item) => item.name}
           horizontal
           style={{ flexGrow: 0 }}
           showsHorizontalScrollIndicator={false}
           renderItem={({ item }) => {
-            return <Card doctor={item} navigation={props.navigation} />;
+            return <Card doctor={item} navigation={props.navigation}
+          onRefresh={HandleRefresh}
+          refreshing={isLoading}
+          />;
           }}
-        />
+        />)}
         <Text style={styles.textStyle}>Our Services</Text>
+
+        
       </View>
       
     </SafeAreaView>

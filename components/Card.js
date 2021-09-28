@@ -17,11 +17,11 @@ const Card = (props) => {
       activeOpacity={1}
     >
       <ImageBackground
-        source={{ uri: doctor.imageUrl }}
+        source={{ uri: doctor.imgurl }}
         style={styles.imageStyle}
       >
         <View style={styles.textContainer}>
-          <Text style={styles.nameStyle}>Dr {doctor.name}</Text>
+          <Text style={styles.nameStyle}>Dr {doctor.surname}{doctor.name}</Text>
           <Text style={styles.textStyle}>{doctor.trainerType}</Text>
           <View style={styles.ratingStyle}>
             <AntDesign name="staro" size={18} color="rgba(255, 214, 0, 1)" />
