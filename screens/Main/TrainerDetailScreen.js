@@ -89,6 +89,7 @@ const TrainerDetailScreen = (props) => {
           </View>
           <View style={styles.cardStyle}>
             <Text style={styles.textStyle}>Location</Text>
+            <SmallSpacer />
             <MapView
               style={{
                 height: 150,

@@ -69,12 +69,12 @@ export const AppointmentScreenNavigator = () => {
   return (
     <MainStackNavigator.Navigator>
       <MainStackNavigator.Screen
-        name="Appointment Screen"
+        name="AppointmentScreen"
         component={AppointmentScreen}
         options={AppointmentScreenOptions}
       />
       <MainStackNavigator.Screen
-        name="Appointment Detail"
+        name="AppointmentDetail"
         component={AppointmentDetail}
         options={AppointmentDetailOptions}
       />

@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import SafeAreaView from "react-native-safe-area-view";
 import { DOCTORS } from "../../data/dummyDoctorData";
 import Card from "../../components/Card";
+import Icon from "../../components/Icon";
 
 const HomeScreen = (props) => {
   return (
@@ -28,6 +29,17 @@ const HomeScreen = (props) => {
           }}
         />
         <Text style={styles.textStyle}>Our Services</Text>
+        <View style={{ flexDirection: "row" }}>
+          <Icon imageUrl={require("../../assets/icons/spa.png")} label="Spa" />
+          <Icon
+            imageUrl={require("../../assets/icons/personal_trainer.png")}
+            label="Trainer"
+          />
+          <Icon
+            imageUrl={require("../../assets/icons/chiro.png")}
+            label="Chiropractor"
+          />
+        </View>
       </View>
     </SafeAreaView>
   );

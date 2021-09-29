@@ -18,6 +18,7 @@ export const MainNavigator = () => {
     <Tab.Navigator
       tabBarOptions={{
         showLabel: false,
+        keyboardHidesTabBar: true,
         style: {
           position: "absolute",
           bottom: Platform.OS === "ios" ? 25 : 0,
@@ -30,7 +31,6 @@ export const MainNavigator = () => {
         },
         activeTintColor: "white",
         ...styles.shadow,
-        keyboardHidesTabBar: true,
       }}
     >
       <Tab.Screen
