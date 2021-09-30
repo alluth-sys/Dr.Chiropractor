@@ -24,7 +24,7 @@ const AppointmentScreen = (props) => {
               size={70}
             />
             <ListItem.Content>
-              <ListItem.Title style={{ fontFamily: "opensans_bold" }}>
+              <ListItem.Title style={{ fontFamily: "rufina_bold" }}>
                 {appoinment.doctor}
               </ListItem.Title>
               <ListItem.Subtitle style={styles.textStyle}>
@@ -53,13 +53,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   textStyle: {
-    fontFamily: "opensans_regular",
+    fontFamily: "rufina_regular",
   },
 });
 
 export const screenOptions = () => {
   return {
-    title: "Appointment",
+    title: "Appointments",
     headerTitleAlign: "center",
     headerTitleStyle: { fontFamily: "rufina_bold" },
   };

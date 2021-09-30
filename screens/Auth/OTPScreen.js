@@ -10,10 +10,10 @@ import {
   Platform,
   Alert,
   ActivityIndicator,
-  SafeAreaView,
 } from "react-native";
+import SafeAreaView from "react-native-safe-area-view";
 import { Button } from "react-native-elements";
-import Spacer from "../../components/Spacer";
+import { Spacer } from "../../components/Spacer";
 import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
 import firebase from "firebase";
 

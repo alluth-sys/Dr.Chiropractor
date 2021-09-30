@@ -10,7 +10,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { Button } from "react-native-elements";
-import Spacer from "../../components/Spacer";
+import { Spacer } from "../../components/Spacer";
 import DefaultInput from "../../components/DefaultInput";
 import { AuthContext } from "../../provider/AuthProvider";
 import SocialButton from "../../components/SocialButton";
